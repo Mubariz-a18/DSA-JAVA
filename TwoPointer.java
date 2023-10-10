@@ -1,6 +1,7 @@
 public class TwoPointer {
     public static void main(String[] args) {
         int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+
         reverseArr(array);
         for (int num : array) {
             System.out.println(num);
