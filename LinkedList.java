@@ -1,40 +1,63 @@
+public class LinkedList {
+    private Node head ;
+    private Node tail ;
 
-public class LinkedList<T> {
-    Node<T> head;
-
-    public LinkedList() {
-        this.head = null;
+    public Node getHead() {
+        return head;
     }
 
-    public void add(T data) {
-        Node<T> newNode = new Node<>(data);
+    private int count = 0;
+    public int size(){
+        return count;
+    }
+    public  boolean isEmpty(){
+        return count == 0;
+    }
 
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<T> current = head;
-            while (current.next != null) {
+    public void add(int val){
+        ++count;
+        Node nd = new Node(val);
+        if(tail != null){
+            tail.next = nd;
+            tail = nd;
+        }
+        else{
+            tail = nd ;
+            head = tail;
+        }
+    }
+
+    public void addToHead(int val){
+        ++count;
+        Node nd = new Node(val);
+        if(head != null){
+            nd.next = head ;
+            head = nd;
+        }else{
+            head = nd;
+            tail = nd;
+        }
+    }
+
+    public void delete(int val ){
+        Node previous = null;
+        Node current = head;
+        if(size() == 1){
+            --count;
+            head = null;
+            return;
+        }
+        while(current != null){
+            if(current.val == val){
+                previous.next = current.next;
+                --count;
+                break;
+            }else{
+                previous = current;
                 current = current.next;
             }
-            current.next = newNode;
         }
-    }
-
-    public void display() {
-        Node<T> current = head;
-        while (current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
-        }
-        System.out.println("null");
-    }
-
-    public static void main(String[] args) {
-        LinkedList<String> myList = new LinkedList<>();
-        myList.add("hello");
-        myList.add("mubariz");
-        myList.add("Ahmed");
-
-        myList.display();
     }
 }
+
+
